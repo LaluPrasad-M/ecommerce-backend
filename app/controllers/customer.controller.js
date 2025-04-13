@@ -233,17 +233,9 @@ exports.updateProfile = async (req, res, next) => {
  * @param {Object} req - Express request object
  * @param {Object} res - Express response object
  */
-const getRoot = (req, res) => {
+exports.getRoot = (req, res) => {
   res.status(200).json({
     success: true,
     message: 'Customer API is working'
   });
 };
-
-module.exports = {
-  register,
-  login,
-  getProfile,
-  updateProfile,
-  getRoot
-}; 

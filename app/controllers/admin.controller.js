@@ -484,25 +484,9 @@ exports.getDashboardMetrics = async (req, res, next) => {
  * @param {Object} req - Express request object
  * @param {Object} res - Express response object
  */
-const getRoot = (req, res) => {
+exports.getRoot = (req, res) => {
   res.status(200).json({
     success: true,
     message: 'Admin API is working'
   });
-};
-
-module.exports = {
-  login,
-  addProduct,
-  updateProduct,
-  deleteProduct,
-  getAllProducts,
-  getAllOrders,
-  updateOrderStatus,
-  createCoupon,
-  updateCoupon,
-  deleteCoupon,
-  getAllCoupons,
-  getDashboardMetrics,
-  getRoot
 };

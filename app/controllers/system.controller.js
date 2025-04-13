@@ -1,33 +1,26 @@
 "use strict";
 
 /**
- * Controller for system-related routes
+ * Root route handler
+ * @param {Object} req - Express request object
+ * @param {Object} res - Express response object
  */
-const systemController = {
-  /**
-   * Root route handler
-   * @param {Object} req - Express request object
-   * @param {Object} res - Express response object
-   */
-  getRoot: (req, res) => {
-    res.status(200).json({
-      success: true,
-      message: 'eCommerce API is running'
-    });
-  },
-
-  /**
-   * Health check route handler
-   * @param {Object} req - Express request object
-   * @param {Object} res - Express response object
-   */
-  getHealthCheck: (req, res) => {
-    res.status(200).json({
-      success: true,
-      message: 'eCommerce API is healthy',
-      timestamp: new Date().toISOString()
-    });
-  }
+exports.getRoot = (req, res) => {
+  res.status(200).json({
+    success: true,
+    message: "eCommerce API is running",
+  });
 };
 
-module.exports = systemController; 
+/**
+ * Health check route handler
+ * @param {Object} req - Express request object
+ * @param {Object} res - Express response object
+ */
+exports.getHealthCheck = (req, res) => {
+  res.status(200).json({
+    success: true,
+    message: "eCommerce API is healthy",
+    timestamp: new Date().toISOString(),
+  });
+};
