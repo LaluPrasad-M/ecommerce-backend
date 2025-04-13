@@ -8,9 +8,7 @@ services:
     environment:
       - PORT=3000
       # - MONGODB_URI=mongodb://mongo:27017/ecommerce
-      - NODE_ENV=development
       - JWT_KEY=secret_key
-      - DEBUG=app:*
     # depends_on:
     #   - mongo
     volumes:

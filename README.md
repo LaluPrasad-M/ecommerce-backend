@@ -86,7 +86,6 @@ This is the backend API for an e-commerce application built with Node.js, Expres
    PORT=3000
    MONGODB_URI=mongodb://localhost:27017/ecommerce
    JWT_KEY=your_secure_jwt_key
-   NODE_ENV=development
    ```
 
 4. Start the server
