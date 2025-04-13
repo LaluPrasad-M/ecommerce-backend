@@ -26,4 +26,7 @@ router.delete("/coupons/:id", authMiddleware.verifyToken, authMiddleware.isAdmin
 // Dashboard
 router.get("/dashboard", authMiddleware.verifyToken, authMiddleware.isAdmin, adminController.getDashboardMetrics);
 
+// Admin root route
+router.get('/', adminController.getRoot);
+
 module.exports = router;

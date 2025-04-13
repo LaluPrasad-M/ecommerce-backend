@@ -4,7 +4,19 @@ const User = require("../models/user.model");
 const Cart = require("../models/cart.model");
 const auth = require("../../config/authentication");
 
-// Register a new customer
+/**
+ * Register a new customer
+ * @param {Object} req - Express request object
+ * @param {Object} req.body - Request body
+ * @param {string} req.body.name - Customer's name
+ * @param {string} req.body.address - Customer's address
+ * @param {string} req.body.mobileNumber - Customer's mobile number
+ * @param {string} req.body.dateOfBirth - Customer's date of birth
+ * @param {string} req.body.email - Customer's email address
+ * @param {string} req.body.password - Customer's password
+ * @param {Object} res - Express response object
+ * @param {Function} next - Express next middleware function
+ */
 exports.register = async (req, res, next) => {
   try {
     const { name, address, mobileNumber, dateOfBirth, email, password } = req.body;
@@ -81,7 +93,15 @@ exports.register = async (req, res, next) => {
   }
 };
 
-// Login customer
+/**
+ * Login customer
+ * @param {Object} req - Express request object
+ * @param {Object} req.body - Request body
+ * @param {string} req.body.mobileNumber - Customer's mobile number
+ * @param {string} req.body.password - Customer's password
+ * @param {Object} res - Express response object
+ * @param {Function} next - Express next middleware function
+ */
 exports.login = async (req, res, next) => {
   try {
     const { mobileNumber, password } = req.body;
@@ -133,7 +153,14 @@ exports.login = async (req, res, next) => {
   }
 };
 
-// Get customer profile
+/**
+ * Get customer profile
+ * @param {Object} req - Express request object
+ * @param {Object} req.user - Authenticated user info from auth middleware
+ * @param {string} req.user.userId - User ID from token
+ * @param {Object} res - Express response object
+ * @param {Function} next - Express next middleware function
+ */
 exports.getProfile = async (req, res, next) => {
   try {
     const user = await User.findById(req.user.userId).select("-password");
@@ -152,7 +179,19 @@ exports.getProfile = async (req, res, next) => {
   }
 };
 
-// Update customer profile
+/**
+ * Update customer profile
+ * @param {Object} req - Express request object
+ * @param {Object} req.user - Authenticated user info from auth middleware
+ * @param {string} req.user.userId - User ID from token
+ * @param {Object} req.body - Request body
+ * @param {string} [req.body.name] - Customer's name
+ * @param {string} [req.body.address] - Customer's address
+ * @param {string} [req.body.dateOfBirth] - Customer's date of birth
+ * @param {string} [req.body.email] - Customer's email address
+ * @param {Object} res - Express response object
+ * @param {Function} next - Express next middleware function
+ */
 exports.updateProfile = async (req, res, next) => {
   try {
     const { name, address, dateOfBirth, email } = req.body;
@@ -187,4 +226,24 @@ exports.updateProfile = async (req, res, next) => {
   } catch (error) {
     next(error);
   }
+};
+
+/**
+ * Handle customer root route
+ * @param {Object} req - Express request object
+ * @param {Object} res - Express response object
+ */
+const getRoot = (req, res) => {
+  res.status(200).json({
+    success: true,
+    message: 'Customer API is working'
+  });
+};
+
+module.exports = {
+  register,
+  login,
+  getProfile,
+  updateProfile,
+  getRoot
 }; 

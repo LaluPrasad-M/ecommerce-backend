@@ -9,12 +9,15 @@ const adminUtil = require('./app/utils/admin.util');
 // Routes
 const adminRoutes = require('./app/routes/admin.routes');
 const customerRoutes = require('./app/routes/customer.routes');
+const systemRoutes = require('./app/routes/system.routes');
 
 const app = express();
 const PORT = config.PORT;
 
 expressManager.config(app);
 
+// Mount system routes for root and health check
+app.use('/', systemRoutes);
 app.use('/admin', adminRoutes);
 app.use('/customer', customerRoutes);
 

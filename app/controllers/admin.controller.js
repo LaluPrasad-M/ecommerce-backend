@@ -6,7 +6,15 @@ const Order = require("../models/order.model");
 const Coupon = require("../models/coupon.model");
 const auth = require("../../config/authentication");
 
-// Admin login
+/**
+ * Admin login
+ * @param {Object} req - Express request object
+ * @param {Object} req.body - Request body
+ * @param {string} req.body.mobileNumber - Admin's mobile number
+ * @param {string} req.body.password - Admin's password
+ * @param {Object} res - Express response object
+ * @param {Function} next - Express next middleware function
+ */
 exports.login = async (req, res, next) => {
   try {
     const { mobileNumber, password } = req.body;
@@ -58,7 +66,20 @@ exports.login = async (req, res, next) => {
   }
 };
 
-// Product management
+/**
+ * Add a new product
+ * @param {Object} req - Express request object
+ * @param {Object} req.body - Request body
+ * @param {string} req.body.name - Product name
+ * @param {string} req.body.description - Product description
+ * @param {number} req.body.price - Product price
+ * @param {number} req.body.stock - Product stock quantity
+ * @param {string} req.body.category - Product category
+ * @param {string} req.body.image - Product image URL
+ * @param {boolean} req.body.isActive - Product active status
+ * @param {Object} res - Express response object
+ * @param {Function} next - Express next middleware function
+ */
 exports.addProduct = async (req, res, next) => {
   try {
     const { name, description, price, stock, category, image, isActive } = req.body;
@@ -85,6 +106,22 @@ exports.addProduct = async (req, res, next) => {
   }
 };
 
+/**
+ * Update an existing product
+ * @param {Object} req - Express request object
+ * @param {Object} req.params - Request path parameters
+ * @param {string} req.params.id - Product ID
+ * @param {Object} req.body - Request body
+ * @param {string} [req.body.name] - Product name
+ * @param {string} [req.body.description] - Product description
+ * @param {number} [req.body.price] - Product price
+ * @param {number} [req.body.stock] - Product stock quantity
+ * @param {string} [req.body.category] - Product category
+ * @param {string} [req.body.image] - Product image URL
+ * @param {boolean} [req.body.isActive] - Product active status
+ * @param {Object} res - Express response object
+ * @param {Function} next - Express next middleware function
+ */
 exports.updateProduct = async (req, res, next) => {
   try {
     const { id } = req.params;
@@ -118,6 +155,14 @@ exports.updateProduct = async (req, res, next) => {
   }
 };
 
+/**
+ * Delete a product
+ * @param {Object} req - Express request object
+ * @param {Object} req.params - Request path parameters
+ * @param {string} req.params.id - Product ID
+ * @param {Object} res - Express response object
+ * @param {Function} next - Express next middleware function
+ */
 exports.deleteProduct = async (req, res, next) => {
   try {
     const { id } = req.params;
@@ -140,6 +185,12 @@ exports.deleteProduct = async (req, res, next) => {
   }
 };
 
+/**
+ * Get all products
+ * @param {Object} req - Express request object
+ * @param {Object} res - Express response object
+ * @param {Function} next - Express next middleware function
+ */
 exports.getAllProducts = async (req, res, next) => {
   try {
     const products = await Product.find({});
@@ -154,7 +205,12 @@ exports.getAllProducts = async (req, res, next) => {
   }
 };
 
-// Order management
+/**
+ * Get all orders
+ * @param {Object} req - Express request object
+ * @param {Object} res - Express response object
+ * @param {Function} next - Express next middleware function
+ */
 exports.getAllOrders = async (req, res, next) => {
   try {
     const orders = await Order.find({})
@@ -171,6 +227,16 @@ exports.getAllOrders = async (req, res, next) => {
   }
 };
 
+/**
+ * Update order status
+ * @param {Object} req - Express request object
+ * @param {Object} req.params - Request path parameters
+ * @param {string} req.params.id - Order ID
+ * @param {Object} req.body - Request body
+ * @param {string} req.body.status - New order status
+ * @param {Object} res - Express response object
+ * @param {Function} next - Express next middleware function
+ */
 exports.updateOrderStatus = async (req, res, next) => {
   try {
     const { id } = req.params;
@@ -196,7 +262,18 @@ exports.updateOrderStatus = async (req, res, next) => {
   }
 };
 
-// Coupon management
+/**
+ * Create a new coupon
+ * @param {Object} req - Express request object
+ * @param {Object} req.body - Request body
+ * @param {string} req.body.code - Coupon code
+ * @param {number} req.body.discountPercentage - Discount percentage (0-100)
+ * @param {number} req.body.minimumCartValue - Minimum cart value for coupon to apply
+ * @param {Date} req.body.startDate - Coupon validity start date
+ * @param {Date} req.body.endDate - Coupon validity end date
+ * @param {Object} res - Express response object
+ * @param {Function} next - Express next middleware function
+ */
 exports.createCoupon = async (req, res, next) => {
   try {
     const { code, discountPercentage, minimumCartValue, startDate, endDate } = req.body;
@@ -236,6 +313,20 @@ exports.createCoupon = async (req, res, next) => {
   }
 };
 
+/**
+ * Update an existing coupon
+ * @param {Object} req - Express request object
+ * @param {Object} req.params - Request path parameters
+ * @param {string} req.params.id - Coupon ID
+ * @param {Object} req.body - Request body
+ * @param {number} [req.body.discountPercentage] - Discount percentage (0-100)
+ * @param {number} [req.body.minimumCartValue] - Minimum cart value for coupon to apply
+ * @param {Date} [req.body.startDate] - Coupon validity start date
+ * @param {Date} [req.body.endDate] - Coupon validity end date
+ * @param {boolean} [req.body.isActive] - Coupon active status
+ * @param {Object} res - Express response object
+ * @param {Function} next - Express next middleware function
+ */
 exports.updateCoupon = async (req, res, next) => {
   try {
     const { id } = req.params;
@@ -274,6 +365,14 @@ exports.updateCoupon = async (req, res, next) => {
   }
 };
 
+/**
+ * Delete a coupon
+ * @param {Object} req - Express request object
+ * @param {Object} req.params - Request path parameters
+ * @param {string} req.params.id - Coupon ID
+ * @param {Object} res - Express response object
+ * @param {Function} next - Express next middleware function
+ */
 exports.deleteCoupon = async (req, res, next) => {
   try {
     const { id } = req.params;
@@ -296,6 +395,12 @@ exports.deleteCoupon = async (req, res, next) => {
   }
 };
 
+/**
+ * Get all coupons
+ * @param {Object} req - Express request object
+ * @param {Object} res - Express response object
+ * @param {Function} next - Express next middleware function
+ */
 exports.getAllCoupons = async (req, res, next) => {
   try {
     const coupons = await Coupon.find({});
@@ -310,7 +415,12 @@ exports.getAllCoupons = async (req, res, next) => {
   }
 };
 
-// Dashboard metrics
+/**
+ * Get dashboard metrics for admin
+ * @param {Object} req - Express request object
+ * @param {Object} res - Express response object
+ * @param {Function} next - Express next middleware function
+ */
 exports.getDashboardMetrics = async (req, res, next) => {
   try {
     // Total orders count
@@ -367,4 +477,32 @@ exports.getDashboardMetrics = async (req, res, next) => {
   } catch (error) {
     next(error);
   }
+};
+
+/**
+ * Handle admin root route
+ * @param {Object} req - Express request object
+ * @param {Object} res - Express response object
+ */
+const getRoot = (req, res) => {
+  res.status(200).json({
+    success: true,
+    message: 'Admin API is working'
+  });
+};
+
+module.exports = {
+  login,
+  addProduct,
+  updateProduct,
+  deleteProduct,
+  getAllProducts,
+  getAllOrders,
+  updateOrderStatus,
+  createCoupon,
+  updateCoupon,
+  deleteCoupon,
+  getAllCoupons,
+  getDashboardMetrics,
+  getRoot
 };

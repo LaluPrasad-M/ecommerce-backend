@@ -34,4 +34,7 @@ router.get("/orders", authMiddleware.verifyToken, authMiddleware.isCustomer, ord
 router.get("/orders/:id", authMiddleware.verifyToken, authMiddleware.isCustomer, orderController.getOrderDetails);
 router.put("/orders/:id/cancel", authMiddleware.verifyToken, authMiddleware.isCustomer, orderController.cancelOrder);
 
+// Customer root route
+router.get('/', customerController.getRoot);
+
 module.exports = router;
