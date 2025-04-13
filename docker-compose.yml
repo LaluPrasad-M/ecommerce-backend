@@ -7,37 +7,36 @@ services:
       - "3000:3000"
     environment:
       - PORT=3000
-      - MONGODB_URI=mongodb://mongo:27017/ecommerce
+      # - MONGODB_URI=mongodb://mongo:27017/ecommerce
       - NODE_ENV=development
       - JWT_KEY=secret_key
       - DEBUG=app:*
-    depends_on:
-      - mongo
+    # depends_on:
+    #   - mongo
     volumes:
       - .:/usr/src/app
       - /usr/src/app/node_modules
     restart: unless-stopped
     command: npm start
 
-  mongo:
-    image: mongo:4.4
-    ports:
-      - "27017:27017"
-    volumes:
-      - mongo-data:/data/db
-    restart: unless-stopped
-
-  # MongoDB Admin UI
-  mongo-express:
-    image: mongo-express
-    restart: unless-stopped
-    ports:
-      - "8081:8081"
-    environment:
-      - ME_CONFIG_MONGODB_SERVER=mongo
-      - ME_CONFIG_MONGODB_PORT=27017
-    depends_on:
-      - mongo
+  # mongo:
+  #   image: mongo:4.4
+  #   ports:
+  #     - "27017:27017"
+  #   volumes:
+  #     - mongo-data:/data/db
+  #   restart: unless-stopped
+  # # MongoDB Admin UI
+  # mongo-express:
+  #   image: mongo-express
+  #   restart: unless-stopped
+  #   ports:
+  #     - "8081:8081"
+  #   environment:
+  #     - ME_CONFIG_MONGODB_SERVER=mongo
+  #     - ME_CONFIG_MONGODB_PORT=27017
+  #   depends_on:
+  #     - mongo
 
 volumes:
   mongo-data: 
