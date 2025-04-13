@@ -6,9 +6,7 @@ const config = require("./config");
 const dbURL = config.MONGODB_URI;
 
 const initDb = (callback) => {
-  mongoose.connect(dbURL, {
-    useNewUrlParser: true,
-  })
+  mongoose.connect(dbURL)
   .then(() => {
     console.log("MongoDB connected successfully!");
     callback(null, mongoose.connection);
