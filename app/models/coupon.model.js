@@ -58,7 +58,6 @@ couponSchema.pre('validate', function(next) {
 });
 
 // Create indexes for efficient queries
-couponSchema.index({ code: 1 }, { unique: true });
 couponSchema.index({ isActive: 1, startDate: 1, endDate: 1 });
 couponSchema.index({ usageCount: 1 });
 
