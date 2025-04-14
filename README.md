@@ -2,6 +2,36 @@
 
 This is the backend API for an e-commerce application built with Node.js, Express, and MongoDB.
 
+## Live Deployment
+
+The API is currently deployed and can be accessed at:
+
+<div align="center">
+  <a href="https://ecommerce-backend-production-c47a.up.railway.app/healthCheck" target="_blank">
+    <div style="
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      font-weight: bold;
+      border-radius: 4px;
+      text-decoration: none;
+      margin: 10px 0;
+    ">
+      🔍 Check API Health Status
+    </div>
+  </a>
+</div>
+
+You can verify the API status by accessing the health check endpoint, which returns:
+```json
+{
+  "success": true,
+  "message": "eCommerce API is healthy",
+  "timestamp": "2025-04-14T12:30:25.869Z"
+}
+```
+
 ## Features
 
 - User (Customer/Admin) Authentication with JWT
